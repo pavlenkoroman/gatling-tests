@@ -23,7 +23,7 @@ echo ""
 echo "Нажми Enter чтобы запустить тест."
 read -r
 
-mvn -q gatling:test \
+mvn -q io.gatling:gatling-maven-plugin:4.21.7:test \
     -Dgatling.simulationClass=Experiment2RedisFailoverSimulation \
     -DbaseUrlFeed="$FEED_URL" \
     -DdurationMin="$DURATION"

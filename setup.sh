@@ -15,7 +15,7 @@ POST_URL="http://$IP:8081"
 SSH="ssh -o StrictHostKeyChecking=no root@$IP"
 
 echo "=== Setup: засев данных ==="
-mvn -q gatling:test \
+mvn -q io.gatling:gatling-maven-plugin:4.21.7:test \
     -Dgatling.simulationClass=SetupSimulation \
     -DbaseUrlUser="$USER_URL" \
     -DbaseUrlPost="$POST_URL"

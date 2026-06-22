@@ -16,7 +16,7 @@ POST_URL="http://$IP:8081"
 FEED_URL="http://$IP:8083"
 
 echo "=== Эксперимент 1: пиковая нагрузка (ramp=${RAMP}m, peak=${PEAK}m) ==="
-mvn -q gatling:test \
+mvn -q io.gatling:gatling-maven-plugin:4.21.7:test \
     -Dgatling.simulationClass=Experiment1PeakLoadSimulation \
     -DbaseUrlFeed="$FEED_URL" \
     -DbaseUrlUser="$USER_URL" \

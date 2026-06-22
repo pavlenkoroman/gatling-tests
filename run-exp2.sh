@@ -5,13 +5,15 @@ set -uo pipefail
 
 cd "$(dirname "$0")"
 
-DURATION=${1:-15}
-FEED_URL="http://localhost:8083"
+IP=${1:?"Usage: ./run-exp2.sh <server-ip> [duration-min]"}
+DURATION=${2:-15}
+FEED_URL="http://$IP:8083"
+SSH="ssh -o StrictHostKeyChecking=no root@$IP"
 
 echo "=== Эксперимент 2: Redis failover (${DURATION} мин, 500 RPS) ==="
 echo "t=0:   старт нагрузки"
 
-mvn -q gatling:test \
+mvn -q io.gatling:gatling-maven-plugin:4.21.7:test \
     -Dgatling.simulationClass=Experiment2RedisFailoverSimulation \
     "-DbaseUrlFeed=$FEED_URL" \
     "-DdurationMin=$DURATION" &
@@ -19,12 +21,12 @@ MVN_PID=$!
 
 sleep 180
 echo "t=3min: kubectl scale statefulset/redis --replicas=0 (Redis DOWN)"
-kubectl scale statefulset/redis -n newsfeed --replicas=0
+$SSH kubectl scale statefulset/redis -n newsfeed --replicas=0
 
 sleep 300
 echo "t=8min: kubectl scale statefulset/redis --replicas=1 (Redis UP)"
-kubectl scale statefulset/redis -n newsfeed --replicas=1
-kubectl rollout status statefulset/redis -n newsfeed --timeout=60s
+$SSH kubectl scale statefulset/redis -n newsfeed --replicas=1
+$SSH kubectl rollout status statefulset/redis -n newsfeed --timeout=60s
 
 echo "Ожидаю завершения Gatling (до конца ${DURATION} мин)..."
 wait "$MVN_PID"

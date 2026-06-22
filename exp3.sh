@@ -25,7 +25,7 @@ fi
 echo "=== Эксперимент 3: celebrity threshold (8 мин, 2 000 RPS) ==="
 echo "  celebrity ID: $(cat src/test/resources/celebrity-id.txt)"
 echo ""
-mvn -q gatling:test \
+mvn -q io.gatling:gatling-maven-plugin:4.21.7:test \
     -Dgatling.simulationClass=Experiment3CelebritySimulation \
     -DbaseUrlFeed="$FEED_URL" \
     -DbaseUrlPost="$POST_URL" \
