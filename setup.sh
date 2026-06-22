@@ -10,8 +10,8 @@ set -euo pipefail
 
 IP=${1:?"Usage: ./setup.sh <server-ip>"}
 
-USER_URL="http://$IP:8080"
-POST_URL="http://$IP:8081"
+USER_URL="http://$IP:32400"
+POST_URL="http://$IP:32401"
 SSH="ssh -o StrictHostKeyChecking=no root@$IP"
 
 echo "=== Setup: засев данных ==="

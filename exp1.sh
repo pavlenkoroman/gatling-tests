@@ -11,9 +11,9 @@ IP=${1:?"Usage: ./exp1.sh <server-ip> [ramp-min] [peak-min]"}
 RAMP=${2:-5}
 PEAK=${3:-20}
 
-USER_URL="http://$IP:8080"
-POST_URL="http://$IP:8081"
-FEED_URL="http://$IP:8083"
+USER_URL="http://$IP:32400"
+POST_URL="http://$IP:32401"
+FEED_URL="http://$IP:32402"
 
 echo "=== Эксперимент 1: пиковая нагрузка (ramp=${RAMP}m, peak=${PEAK}m) ==="
 mvn -q io.gatling:gatling-maven-plugin:4.21.7:test \

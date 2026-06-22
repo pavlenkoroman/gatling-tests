@@ -12,7 +12,7 @@ set -euo pipefail
 IP=${1:?"Usage: ./exp2.sh <server-ip> [duration-min]"}
 DURATION=${2:-15}
 
-FEED_URL="http://$IP:8083"
+FEED_URL="http://$IP:32402"
 
 echo "=== Эксперимент 2: Redis failover (${DURATION} мин, 500 RPS) ==="
 echo ""

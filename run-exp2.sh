@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 
 IP=${1:?"Usage: ./run-exp2.sh <server-ip> [duration-min]"}
 DURATION=${2:-15}
-FEED_URL="http://$IP:8083"
+FEED_URL="http://$IP:32402"
 SSH="ssh -o StrictHostKeyChecking=no root@$IP"
 
 echo "=== Эксперимент 2: Redis failover (${DURATION} мин, 500 RPS) ==="
