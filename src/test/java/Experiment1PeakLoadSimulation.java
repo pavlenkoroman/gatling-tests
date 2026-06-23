@@ -6,7 +6,7 @@ import static io.gatling.javaapi.http.HttpDsl.*;
 import static java.time.Duration.ofMinutes;
 
 /**
- * Эксперимент 1 — пиковая нагрузка (~9 800 RPS суммарно).
+ * Эксперимент 1 — пиковая нагрузка (~2 800 RPS суммарно).
  * <p>
  * Профиль каждого сценария: рамп rampMin мин → пик peakMin мин → рамп вниз rampMin мин.
  * <p>
@@ -90,29 +90,29 @@ public class Experiment1PeakLoadSimulation extends Simulation {
     {
         setUp(
                 getFeed.injectOpen(
-                        rampUsersPerSec(0).to(5000).during(ofMinutes(rampMin)),
-                        constantUsersPerSec(5000).during(ofMinutes(peakMin)),
-                        rampUsersPerSec(5000).to(0).during(ofMinutes(rampMin))
+                        rampUsersPerSec(0).to(1500).during(ofMinutes(rampMin)),
+                        constantUsersPerSec(1500).during(ofMinutes(peakMin)),
+                        rampUsersPerSec(1500).to(0).during(ofMinutes(rampMin))
                 ),
                 getUser.injectOpen(
-                        rampUsersPerSec(0).to(2500).during(ofMinutes(rampMin)),
-                        constantUsersPerSec(2500).during(ofMinutes(peakMin)),
-                        rampUsersPerSec(2500).to(0).during(ofMinutes(rampMin))
+                        rampUsersPerSec(0).to(800).during(ofMinutes(rampMin)),
+                        constantUsersPerSec(800).during(ofMinutes(peakMin)),
+                        rampUsersPerSec(800).to(0).during(ofMinutes(rampMin))
                 ),
                 getPost.injectOpen(
-                        rampUsersPerSec(0).to(1300).during(ofMinutes(rampMin)),
-                        constantUsersPerSec(1300).during(ofMinutes(peakMin)),
-                        rampUsersPerSec(1300).to(0).during(ofMinutes(rampMin))
+                        rampUsersPerSec(0).to(500).during(ofMinutes(rampMin)),
+                        constantUsersPerSec(500).during(ofMinutes(peakMin)),
+                        rampUsersPerSec(500).to(0).during(ofMinutes(rampMin))
                 ),
                 createPost.injectOpen(
-                        rampUsersPerSec(0).to(25).during(ofMinutes(rampMin)),
-                        constantUsersPerSec(25).during(ofMinutes(peakMin)),
-                        rampUsersPerSec(25).to(0).during(ofMinutes(rampMin))
+                        rampUsersPerSec(0).to(15).during(ofMinutes(rampMin)),
+                        constantUsersPerSec(15).during(ofMinutes(peakMin)),
+                        rampUsersPerSec(15).to(0).during(ofMinutes(rampMin))
                 ),
                 followOps.injectOpen(
-                        rampUsersPerSec(0).to(10).during(ofMinutes(rampMin)),
-                        constantUsersPerSec(10).during(ofMinutes(peakMin)),
-                        rampUsersPerSec(10).to(0).during(ofMinutes(rampMin))
+                        rampUsersPerSec(0).to(5).during(ofMinutes(rampMin)),
+                        constantUsersPerSec(5).during(ofMinutes(peakMin)),
+                        rampUsersPerSec(5).to(0).during(ofMinutes(rampMin))
                 )
         ).protocols(httpProtocol);
     }

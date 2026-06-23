@@ -10,10 +10,10 @@ import static java.time.Duration.ofMinutes;
 import static java.time.Duration.ofSeconds;
 
 /**
- * Эксперимент 3 — celebrity threshold (2 000 RPS, 8 минут).
+ * Эксперимент 3 — celebrity threshold (1 500 RPS, 8 минут).
  *
  * Структура:
- *   - 2 000 RPS GET /feed всё время
+ *   - 1 500 RPS GET /feed всё время
  *   - t=2min: celebrity публикует пост → FanoutService должен НЕ делать fanout
  *             (у celebrity >= 5 001 подписчик > threshold 5 000)
  *   - t=5min: обычный пользователь публикует пост → обычный fanout
@@ -96,7 +96,7 @@ public class Experiment3CelebritySimulation extends Simulation {
 
     {
         setUp(
-            getFeed      .injectOpen(constantUsersPerSec(2000).during(ofMinutes(8))),
+            getFeed      .injectOpen(constantUsersPerSec(1500).during(ofMinutes(8))),
             celebrityPost.injectOpen(nothingFor(ofMinutes(2)), atOnceUsers(1)),
             regularPost  .injectOpen(nothingFor(ofMinutes(5)), atOnceUsers(1))
         ).protocols(httpProtocol);

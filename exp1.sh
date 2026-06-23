@@ -2,7 +2,7 @@
 # Эксперимент 1 — пиковая нагрузка.
 # Использование: ./exp1.sh <server-ip> [ramp-min] [peak-min]
 #
-# По умолчанию: ramp=5 мин, peak=20 мин (~9 800 RPS суммарно).
+# По умолчанию: ramp=5 мин, peak=20 мин (~2 800 RPS суммарно).
 # Для baseline: ./exp1.sh <ip> 1 5
 
 set -euo pipefail
