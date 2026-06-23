@@ -28,6 +28,12 @@
                 <groupId>io.gatling</groupId>
                 <artifactId>gatling-maven-plugin</artifactId>
                 <version>4.21.7</version>
+                <configuration>
+                    <jvmArgs>
+                        <jvmArg>-Xmx4g</jvmArg>
+                        <jvmArg>-Xms512m</jvmArg>
+                    </jvmArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>
